@@ -1,0 +1,2 @@
+package kirankumarmedikurthyportfolio.example.kirankumarmedikurthyportfolio.service;public interface PersonalService {
+}
