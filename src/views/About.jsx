@@ -30,11 +30,13 @@ const About = () => {
                   : "mt-4 text-xl text-justify text-white"
               }
             >
-              Front End Engineer @ 6thstreet | Mern Full Stack Developer : Self-motivated web developer seeking a challenging environment to learn, grow, and contribute with acquired technical skills and knowledge.
+              Front End Engineer @ 6thstreet | Mern Full Stack Developer :
+              Self-motivated web developer seeking a challenging environment to
+              learn, grow, and contribute with acquired technical skills and
+              knowledge.
             </p>
           </motion.div>
-          <motion.div
-          >
+          <motion.div>
             <h4 className="mt-12 text-3xl font-semibold text-blue-500">
               Technologies and Tools
             </h4>
@@ -45,7 +47,10 @@ const About = () => {
                   : "mt-4 text-xl text-justify text-white"
               }
             >
-              As a MERN stack developer, I use cutting-edge technologies and reliable open-source software to create user-friendly, high-performance applications and websites that work seamlessly on smartphones, tablets, and desktops.
+              As a MERN stack developer, I use cutting-edge technologies and
+              reliable open-source software to create user-friendly,
+              high-performance applications and websites that work seamlessly on
+              smartphones, tablets, and desktops.
             </p>
           </motion.div>
           <motion.div className="flex flex-wrap mt-8 flex flex-wrap justify-between ">

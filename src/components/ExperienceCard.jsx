@@ -24,7 +24,7 @@ const ExperienceCard = ({
         <img
           class="rounded-t-lg w-full"
           src={company_logo}
-          style={{height: "200px"}}
+          style={{height: "200px", backgroundColor: "white"}}
           alt=""
         />
       </a>

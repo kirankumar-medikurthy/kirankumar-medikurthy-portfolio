@@ -20,7 +20,21 @@ const Projects = () => {
           What I Built
         </h4>
         <div className="mt-8 flex justify-between items-stretch flex-wrap">
-          {projectsData?.map(({project_name,project_description,project_image_link,project_github_link})=><Card project_name={project_name} project_description={project_description} project_image_link={project_image_link} project_github_link={project_github_link}/>)}
+          {projectsData?.map(
+            ({
+              project_name,
+              project_description,
+              project_image_link,
+              project_github_link,
+            }) => (
+              <Card
+                project_name={project_name}
+                project_description={project_description}
+                project_image_link={project_image_link}
+                project_github_link={project_github_link}
+              />
+            )
+          )}
         </div>
         <a
           href={"https://github.com/kirankumar-medikurthy"}

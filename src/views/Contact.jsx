@@ -4,7 +4,8 @@ import { ThemeContext } from "../themeProvider";
 
 const Contact = () => {
   const theme = useContext(ThemeContext);
-  const { full_name, contact_number, email_address, address } = ContactDetails[0];
+  const { full_name, contact_number, email_address, address } =
+    ContactDetails[0];
   const darkMode = theme.state.darkMode;
   return (
     <div
@@ -90,9 +91,7 @@ const Contact = () => {
               </div>
               <div className="flex justify-between ">
                 <div className="underline">
-                  <a href={`mailto:${email_address}`}>
-                    Send me email directly
-                  </a>
+                  <a href={`mailto:${email_address}`}>Send me email directly</a>
                 </div>
                 <button className="bg-indigo-500 text-white px-4 py-2 w-40 rounded-md hover:bg-indigo-400">
                   <a href={`mailto:${email_address}`}>Submit</a>
@@ -131,7 +130,11 @@ const Contact = () => {
                   href={el.link}
                   className="md:ml-6 md:mr-0 mr-6 cursor-pointer mt-4 hover:scale-125 flex flex-col justify-center items-center"
                 >
-                  <img style={{width: '40px', height: '40px'}} alt="" src={el.url} />
+                  <img
+                    style={{ width: "40px", height: "40px" }}
+                    alt=""
+                    src={el.url}
+                  />
                   {/* <p className="text-md mt-2 hover:hidden">{el.name}</p> */}
                 </a>
               ))}

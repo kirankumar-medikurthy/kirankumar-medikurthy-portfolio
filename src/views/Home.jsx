@@ -1,10 +1,9 @@
 import React, { useContext } from "react";
 import heroBg from "../assets/webdev.svg";
 import Typical from "react-typical";
-import { contactLinks } from "../constants";
+import { contactLinks, RESUME_LINK } from "../constants";
 import { ThemeContext } from "../themeProvider";
 import { motion } from "framer-motion";
-import { Link } from "react-scroll";
 import cloud from "../assets/cloudBg.png";
 import cloudDark from "../assets/cloudDark.png";
 
@@ -37,7 +36,7 @@ const Home = () => {
                     "Front End Developer",
                     1000,
                     "MERN Stack Web Developer",
-                    1000
+                    1000,
                   ]}
                   loop={Infinity}
                 />
@@ -50,8 +49,8 @@ const Home = () => {
                   : "mt-3 text-base text-white sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0"
               }
             >
-              I am a Front-End Engineer / MERN Full-Stack Developer. I am currently working at
-              6thstreet.com as a Front-End Engineer
+              I am a MERN Full-Stack Developer, I am currently working at
+              Turno(Blubble Private Limited) as a Software Engineer.
             </p>
             <div className="flex md:justify-start ">
               {contactLinks.map((el) => (
@@ -59,14 +58,22 @@ const Home = () => {
                   href={el.link}
                   className="mr-5 cursor-pointer mt-8 hover:scale-125"
                 >
-                  <img alt="" style={{width:'40px', height:'40px'}}src={el.url} />
+                  <img
+                    alt=""
+                    style={{ width: "40px", height: "40px" }}
+                    src={el.url}
+                  />
                   {/* <p className="text-md mt-2 hover:hidden">{el.name}</p> */}
                 </a>
               ))}
             </div>
             <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
               <div className="mt-3 sm:mt-0 cursor-pointer w-1/2">
-                <a className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-500 hover:bg-blue-200 md:py-4 md:text-lg md:px-10" href={"https://drive.google.com/file/d/1lX-VB4kjg_lNSYP8q2sNapMaesOR5bMR/view"} target={"_blank"}>
+                <a
+                  className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-500 hover:bg-blue-200 md:py-4 md:text-lg md:px-10"
+                  href={RESUME_LINK}
+                  target={"_blank"}
+                >
                   Resume
                 </a>
               </div>

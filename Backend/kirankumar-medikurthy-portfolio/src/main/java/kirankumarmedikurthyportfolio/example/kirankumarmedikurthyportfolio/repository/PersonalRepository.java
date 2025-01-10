@@ -1,2 +1,0 @@
-package kirankumarmedikurthyportfolio.example.kirankumarmedikurthyportfolio.repository;public interface PersonalRepository {
-}

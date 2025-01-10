@@ -1,2 +1,0 @@
-package kirankumarmedikurthyportfolio.example.kirankumarmedikurthyportfolio.service;public interface ModuleService {
-}
