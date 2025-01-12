@@ -134,13 +134,16 @@ export const experienceDetails = [
     company_description: `It is an E-Commerce Website, With a motto of "We are an elevated
     fashion and lifestyle destination committed to styling GCC’s GEN NOW
     to WOW".`,
-    number_of_years: "02/2022 - Present",
+    number_of_years: "02/2022 - 06/2024",
     achievements: [
-      "Enhanced product detail pages with a three-time zoom functionality, revolutionising the way customers explore products",
-      "Revolutionised sales through the power of live shopping on the 6thstreet website.",
-      "Elevated user experience with seamless accessibility through the implementation of search suggestion feature on the 6thstreet website.",
-      "Empowered influencer management by centralising all crucial information with the implementation of an impactful influencer dashboard feature.",
-      "Enhanced website performance by minimising multiple Algolia calls",
+      "Enhanced product detail pages with three-time zoom functionality, revolutionizing the way customers explore products",
+      "Revolutionized sales through the power of live shopping on the 6th Street website.",
+      "Elevated user experience with seamless accessibility through the implementation of a search suggestion feature on the 6th Street website.",
+      "Empowered influencer management by centralizing all crucial information with the implementation of an impactful influencer dashboard feature.",
+      "Enhanced website performance by minimizing multiple Algolia call.",
+      "Enhanced the user experience in the product landing page by adding color varients and flip image features.",
+      "Enhanced the mobile site user experience by developing megamenu features.",
+      "Implemented the nationality id capturing feature for smooth delivery process for customers in oman region.",
     ],
   },
   {
@@ -152,13 +155,19 @@ export const experienceDetails = [
     company_description: `Turno - India's Best Electric Commercial Vehicle Marketplace`,
     number_of_years: "06/2024 - Present",
     achievements: [
-      "Enhanced product detail pages with a three-time zoom functionality, revolutionising the way customers explore products",
-      "Revolutionised sales through the power of live shopping on the 6thstreet website.",
-      "Elevated user experience with seamless accessibility through the implementation of search suggestion feature on the 6thstreet website.",
-      "Empowered influencer management by centralising all crucial information with the implementation of an impactful influencer dashboard feature.",
-      "Enhanced website performance by minimising multiple Algolia calls",
+      "Create a Bajaj passenger vehicle landing page on the https://www.linkedin.com/redir/suspicious-page?url=Turno%2eclub website. This will give users all the details about the new Bajaj vehicle.",
+      "Improved performance by reducing cumulative image shifting, optimizing image sizes, and implementing code splitting.",
+      "Developed the vehicle landing page following industry best practices, enhancing both performance and search engine optimization (SEO).",
+      "Analyzed bank statements, electricity board details, and rental agreements. Added a UI feature to display different statuses with color codes.",
+      "Implemented a UI flow for capturing TVR (Tele Verification Report) details to sanction loans within an hour.",
+      "Build a TAT Funnel Dashboard to visualize detailed progress across states, agents, and OEMs.",
+      "Designed and developed a user-friendly Service Fee Collection interface to streamline and automate the fee collection process for successful loan disbursements.",
+      "Designed and developed the Relationship Proof UI for uploading and validating necessary documents required for loan disbursement.",
+      "Updated backend by adding 'LOOKING_FOR_USED_VEHICLE' field in the lead entity to distinguish leads between Innvolt (used vehicle sales) and Agent App (loan approvals).",
+      "Working on the migration of external referral codes from MongoDB to a Spring Boot framework.",
     ],
   },
 ];
 
-export const RESUME_LINK = "https://drive.google.com/file/d/1NbhCcwZRQ36dA3FsL_LHrFiMiaBVAKhb/view?usp=sharing";
+export const RESUME_LINK =
+  "https://drive.google.com/file/d/1NbhCcwZRQ36dA3FsL_LHrFiMiaBVAKhb/view?usp=sharing";

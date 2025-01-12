@@ -1,5 +1,4 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState } from "react";
 
 const ExperienceCard = ({
   company_logo,
@@ -10,62 +9,83 @@ const ExperienceCard = ({
   number_of_years,
   achievements,
 }) => {
+  const [visibleAchievements, setVisibleAchievements] = useState(3);
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const toggleAchievements = () => {
+    setVisibleAchievements(isExpanded ? 3 : achievements.length);
+    setIsExpanded(!isExpanded);
+  };
+
   return (
-    <motion.div
-      initial={"hidden"}
-      whileInView={"visible"}
-      variants={{
-        visible: { opacity: 1 },
-        hidden: { opacity: 0 },
-      }}
-      class="max-w-xl bg-white rounded-lg border border-gray-200 shadow-lg dark:bg-gray-800 dark:border-gray-700 my-8"
-    >
-      <a href={company_url}>
-        <img
-          class="rounded-t-lg w-full"
-          src={company_logo}
-          style={{height: "200px", backgroundColor: "white"}}
-          alt=""
-        />
-      </a>
-      <div class="p-5">
-        <a href={company_url}>
-          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white" style={{display:"flex",justifyContent:'space-between'}}>
-            <div>{designamation}</div> <div>{number_of_years}</div>
-          </h5>
-          <h6 class="mb-2 text-2xl tracking-tight text-gray-900 dark:text-white">{company_name}</h6>
-        </a>
-        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-          {company_description}
-        </p>
-        <a href={company_url}>
-          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-            {"Achievements/Tasks"}
-          </h5>
-          <ul>
-            {achievements?.map((e,i)=> <li key={i} class="mb-3 font-normal text-gray-700 dark:text-gray-400" >{e}</li>)}
-          </ul>
-        </a>
+    <div className="experience-card relative max-w-3xl mx-auto bg-gradient-to-br from-gray-50 via-white to-gray-100 rounded-xl shadow-lg overflow-hidden my-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
+      {/* Decorative Left Border */}
+      <div className="absolute top-0 left-0 h-full w-1 bg-gradient-to-b from-blue-500 to-blue-300"></div>
+
+      {/* Card Content */}
+      <div className="flex items-center p-8 gap-8">
+        {/* Company Logo */}
         <a
           href={company_url}
-          class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-500 rounded-lg hover:bg-blue-200 focus:ring-4 focus:outline-none focus:ring-blue-300"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex-shrink-0"
         >
-          Read more
-          <svg
-            class="ml-2 -mr-1 w-4 h-4"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-              clip-rule="evenodd"
-            ></path>
-          </svg>
+          <div className="relative w-28 h-28 rounded-full bg-gradient-to-b from-blue-500 to-blue-300 shadow-lg p-1">
+            <div className="w-full h-full bg-white rounded-full flex items-center justify-center overflow-hidden border border-gray-200">
+              <img
+                src={company_logo}
+                alt={`${company_name} logo`}
+                className="w-24 h-24 object-contain"
+              />
+            </div>
+          </div>
         </a>
+
+        {/* Details */}
+        <div className="flex-grow">
+          {/* Header */}
+          <div className="flex justify-between items-center">
+            <div>
+              <h5 className="text-lg font-bold text-gray-900">
+                {designamation}
+              </h5>
+              <h6 className="text-sm text-gray-600 font-medium">
+                {company_name}
+              </h6>
+            </div>
+            <span className="text-xs font-medium text-gray-500">
+              {number_of_years} years
+            </span>
+          </div>
+
+          {/* Description */}
+          <p className="mt-3 text-sm text-gray-700 leading-relaxed">
+            {company_description}
+          </p>
+
+          {/* Achievements */}
+          <div className="mt-5">
+            <h6 className="text-sm font-semibold text-gray-800">
+              Achievements/Tasks:
+            </h6>
+            <ul className="mt-2 list-disc list-inside space-y-2 text-sm text-gray-600">
+              {achievements.slice(0, visibleAchievements).map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+            {achievements.length > 3 && (
+              <button
+                onClick={toggleAchievements}
+                className="mt-3 text-blue-500 hover:text-blue-700 font-medium text-sm"
+              >
+                {isExpanded ? "Read Less" : "Read More"}
+              </button>
+            )}
+          </div>
+        </div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 

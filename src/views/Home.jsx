@@ -1,104 +1,102 @@
 import React, { useContext } from "react";
-import heroBg from "../assets/webdev.svg";
 import Typical from "react-typical";
 import { contactLinks, RESUME_LINK } from "../constants";
 import { ThemeContext } from "../themeProvider";
-import { motion } from "framer-motion";
-import cloud from "../assets/cloudBg.png";
-import cloudDark from "../assets/cloudDark.png";
+import heroBg from "../assets/webdev.svg";
+import lightBackground from "../assets/cloudBg.png";
+import darkBackground from "../assets/cloudDark.png";
 
 const Home = () => {
   const theme = useContext(ThemeContext);
   const darkMode = theme.state.darkMode;
+
   return (
-    <>
-      <div
-        style={
-          darkMode
-            ? { backgroundImage: `url('${cloud}')`, backgroundSize: "cover" }
-            : { backgroundImage: `url('${cloudDark}'`, backgroundSize: "cover" }
-        }
-      >
-        <main
-          className="mx-auto max-w-7xl px-4 sm:px-6 md:mt-0 lg:px-8 flex flex-col md:flex-row items-center justify-center md:justify-between h-screen"
-          id="/"
-        >
-          <div className="sm:text-center lg:text-left">
-            <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
-              <motion.span
-                className={darkMode ? "block text-black" : " text-white"}
-              >
-                Hi, I am Kiran Kumar Medikurthy
-              </motion.span>
-              <span className="block text-blue-500 z-0 lg:inline">
-                <Typical
-                  steps={[
-                    "Front End Developer",
-                    1000,
-                    "MERN Stack Web Developer",
-                    1000,
-                  ]}
-                  loop={Infinity}
-                />
-              </span>
-            </h1>
-            <p
-              className={
-                darkMode
-                  ? "mt-3 text-base text-black sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0"
-                  : "mt-3 text-base text-white sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0"
-              }
+    <div
+      className="min-h-screen flex items-center justify-center px-4"
+      style={{
+        backgroundImage: `url(${darkMode ? lightBackground : darkBackground})`,
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        color: darkMode ? "black" : "white" ,
+      }}
+    >
+      <main className="max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center justify-between w-full">
+        {/* Left Content */}
+        <div className="md:w-1/2 text-center md:text-left">
+          <h1 className="text-5xl font-extrabold leading-snug">
+            <span className="block">Hi, I’m</span>
+            <span className="text-blue-500">Kiran Kumar Medikurthy</span>
+          </h1>
+          <h2 className="text-3xl font-semibold mt-4">
+            <Typical
+              steps={[
+                "Front-End Developer",
+                1500,
+                "MERN Stack Developer",
+                1500,
+                "Creative Problem Solver",
+                1500,
+              ]}
+              loop={Infinity}
+              wrapper="span"
+            />
+          </h2>
+          <p className="mt-6 text-lg">
+            I am a passionate MERN Full-Stack Developer, currently working at
+            Turno (Blubble Private Limited) as a Software Engineer. Let's build
+            something amazing together!
+          </p>
+
+          {/* Action Buttons */}
+          <div className="flex flex-wrap gap-4 mt-8 justify-center md:justify-start">
+            <a
+              href={RESUME_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-3 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 transition-all duration-300 transform hover:-translate-y-1"
             >
-              I am a MERN Full-Stack Developer, I am currently working at
-              Turno(Blubble Private Limited) as a Software Engineer.
-            </p>
-            <div className="flex md:justify-start ">
-              {contactLinks.map((el) => (
-                <a
-                  href={el.link}
-                  className="mr-5 cursor-pointer mt-8 hover:scale-125"
-                >
-                  <img
-                    alt=""
-                    style={{ width: "40px", height: "40px" }}
-                    src={el.url}
-                  />
-                  {/* <p className="text-md mt-2 hover:hidden">{el.name}</p> */}
-                </a>
-              ))}
-            </div>
-            <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
-              <div className="mt-3 sm:mt-0 cursor-pointer w-1/2">
-                <a
-                  className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-500 hover:bg-blue-200 md:py-4 md:text-lg md:px-10"
-                  href={RESUME_LINK}
-                  target={"_blank"}
-                >
-                  Resume
-                </a>
-              </div>
-            </div>
+              View Resume
+            </a>
+            <a
+              href="#contact"
+              className="px-6 py-3 bg-transparent border border-blue-500 text-blue-500 rounded-lg shadow-md hover:bg-blue-500 hover:text-white transition-all duration-300 transform hover:-translate-y-1"
+            >
+              Contact Me
+            </a>
           </div>
-          <motion.img
-            initial="hidden"
-            whileInView={"visible"}
-            variants={{
-              visible: {
-                y: 0,
-                opacity: 1,
-                transition: {
-                  type: "spring",
-                },
-              },
-              hidden: { opacity: 1, y: 80 },
-            }}
+
+          {/* Social Links */}
+          <div className="flex gap-4 mt-8 justify-center md:justify-start">
+            {contactLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 flex items-center justify-center bg-gray-200 dark:bg-gray-700 rounded-full hover:scale-110 transition-transform"
+              >
+                <img
+                  src={link.url}
+                  alt={link.name}
+                  className="w-6 h-6"
+                  title={link.name}
+                />
+              </a>
+            ))}
+          </div>
+        </div>
+
+        {/* Hero Image */}
+        <div className="md:w-1/2 flex justify-center">
+          <img
             src={heroBg}
-            alt=""
-            className="md:w-3/6 hidden sm:block"
+            alt="Web Development"
+            className="w-3/4 md:w-full max-w-md  rounded-lg transform transition-transform hover:scale-105"
           />
-        </main>
-      </div>
-    </>
+        </div>
+      </main>
+    </div>
   );
 };
 

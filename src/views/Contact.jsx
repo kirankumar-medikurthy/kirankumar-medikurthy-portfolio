@@ -1,4 +1,5 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
+import emailjs from "emailjs-com";
 import { contactLinks, ContactDetails } from "../constants";
 import { ThemeContext } from "../themeProvider";
 
@@ -7,152 +8,220 @@ const Contact = () => {
   const { full_name, contact_number, email_address, address } =
     ContactDetails[0];
   const darkMode = theme.state.darkMode;
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const [status, setStatus] = useState("");
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .send(
+        "contact_service",
+        "template_pxebpwq",
+        formData,
+        "5zS20S7iLzTrbvYtL"
+      )
+      .then(
+        (result) => {
+          console.log("Email sent successfully:", result.text);
+          setStatus("Message sent successfully!");
+          setFormData({ name: "", email: "", message: "" });
+        },
+        (error) => {
+          console.error("Error sending email:", error.text);
+          setStatus("Failed to send message. Please try again later.");
+        }
+      );
+  };
+
   return (
     <div
       id="contact"
-      className={
+      className={`pt-24 ${
         darkMode
-          ? "bg-gray-100 pt-24 md:h-screen"
-          : "bg-black pt-24 text-white md:h-screen"
-      }
+          ? "bg-gray-900 text-white"
+          : "bg-gradient-to-b from-blue-50 to-white text-gray-900"
+      }`}
     >
-      <div className="max-w-7xl mx-auto x-4 sm:px-6 lg:px-8 px-4 ">
-        <h2 className="text-5xl font-bold px-4 md:px-0 text-center z-0">
-          Contact
-        </h2>
-        <div>
-          <h4 className="mt-12 text-3xl font-semibold text-blue-500">
-            Connect with me
-          </h4>
-          <p className="text-gray-500 text-xl">
-            If you want to know more about me or my work, or if you would just
-            <br />
-            like to say hello, send me a message. I'd love to hear from you.
-          </p>
-        </div>
-        <div className="flex justify-between items-center md:items-stretch  flex-col md:flex-row pb-24">
-          <div className="w-full md:pr-8">
-            <form>
-              <div class="my-6">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8">
+        {/* Header */}
+        <h2 className="text-5xl font-extrabold text-center mb-4">Contact</h2>
+        <p className="text-center text-lg mb-12 text-gray-600 dark:text-gray-400">
+          I'd love to hear from you! Whether it’s about work, collaboration, or
+          just to say hello.
+        </p>
+
+        {/* Form and Details */}
+        <div className="flex flex-col md:flex-row md:justify-between gap-16">
+          {/* Form */}
+          <div className="w-full md:w-1/2">
+            <form
+              onSubmit={handleSubmit}
+              className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg"
+              style={{
+                boxShadow: darkMode
+                  ? "0px 4px 20px rgba(0, 0, 0, 0.5)"
+                  : "0px 4px 20px rgba(0, 0, 0, 0.1)",
+              }}
+            >
+              <h3 className="text-3xl font-bold mb-6 text-blue-500">
+                Get in Touch
+              </h3>
+              <div className="mb-6">
                 <label
-                  for="name"
-                  class={
-                    darkMode
-                      ? "block mb-2 text-lg font-medium text-gray-900"
-                      : "block mb-2 text-lg font-medium text-white"
-                  }
+                  htmlFor="name"
+                  className="block text-lg font-medium mb-2 text-gray-800 dark:text-gray-300"
                 >
                   Name
                 </label>
                 <input
-                  type="email"
+                  type="text"
                   id="name"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="Enter your name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder="Your Full Name"
+                  className="w-full p-3 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-white border border-gray-300 dark:border-gray-600 focus:ring-4 focus:ring-blue-500 focus:outline-none transition"
                   required
                 />
               </div>
-              <div className="mb-4">
+              <div className="mb-6">
                 <label
-                  for="email"
-                  class={
-                    darkMode
-                      ? "block mb-2 text-lg font-medium text-gray-900"
-                      : "block mb-2 text-lg font-medium text-white"
-                  }
+                  htmlFor="email"
+                  className="block text-lg font-medium mb-2 text-gray-800 dark:text-gray-300"
                 >
                   Email
                 </label>
                 <input
                   type="email"
                   id="email"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="Enter your email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="Your Email Address"
+                  className="w-full p-3 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-white border border-gray-300 dark:border-gray-600 focus:ring-4 focus:ring-blue-500 focus:outline-none transition"
                   required
                 />
               </div>
-              <div className="mb-4">
+              <div className="mb-6">
                 <label
-                  for="message"
-                  class={
-                    darkMode
-                      ? "block mb-2 text-lg font-medium text-gray-900"
-                      : "block mb-2 text-lg font-medium text-white"
-                  }
+                  htmlFor="message"
+                  className="block text-lg font-medium mb-2 text-gray-800 dark:text-gray-300"
                 >
                   Message
                 </label>
                 <textarea
                   id="message"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 h-28 w-full text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="Enter your message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder="Write your message"
+                  rows="5"
+                  className="w-full p-3 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-white border border-gray-300 dark:border-gray-600 focus:ring-4 focus:ring-blue-500 focus:outline-none transition"
                   required
                 />
               </div>
-              <div className="flex justify-between ">
-                <div className="underline">
-                  <a href={`mailto:${email_address}`}>Send me email directly</a>
-                </div>
-                <button className="bg-indigo-500 text-white px-4 py-2 w-40 rounded-md hover:bg-indigo-400">
-                  <a href={`mailto:${email_address}`}>Submit</a>
+              <div className="flex justify-between items-center">
+                <a
+                  href={`mailto:${email_address}`}
+                  className="text-blue-600 dark:text-blue-400 underline hover:text-blue-500 transition"
+                >
+                  Send me an email directly
+                </a>
+                <button
+                  type="submit"
+                  className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-3 px-6 rounded-lg shadow-md hover:scale-105 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-600 transition-transform"
+                >
+                  Submit
                 </button>
               </div>
+              {status && (
+                <p
+                  className={`mt-4 text-center font-semibold ${
+                    status.includes("successfully")
+                      ? "text-green-500"
+                      : "text-red-500"
+                  }`}
+                >
+                  {status}
+                </p>
+              )}
             </form>
           </div>
-          <div className="w-full flex flex-col md:items-end  mt-12 md:mt-6">
-            <h1 className="text-3xl font-bold">Phone</h1>
-            <a
-              href={contact_number}
-              className="mb-12 mt-4 font-semibold text-blue-700 block uppercase"
-            >
-              {contact_number}
-            </a>
-            <h1 className="text-3xl font-bold">Email</h1>
-            <a
-              href={email_address}
-              className="mb-12 mt-4 font-semibold text-blue-700 block uppercase"
-            >
-              {email_address}
-            </a>
-            <h1 className="text-3xl  font-bold">Address</h1>
-            <a
-              href={address}
-              className="mt-4  mb-12 md:text-right font-semibold text-blue-700 block uppercase"
-            >
-              {address}
-              <br />
-              India
-            </a>
-            <h1 className="text-3xl  font-bold">Social</h1>
-            <ul className="flex">
-              {contactLinks.map((el) => (
-                <a
-                  href={el.link}
-                  className="md:ml-6 md:mr-0 mr-6 cursor-pointer mt-4 hover:scale-125 flex flex-col justify-center items-center"
-                >
-                  <img
-                    style={{ width: "40px", height: "40px" }}
-                    alt=""
-                    src={el.url}
-                  />
-                  {/* <p className="text-md mt-2 hover:hidden">{el.name}</p> */}
-                </a>
-              ))}
-            </ul>
+
+          {/* Contact Details */}
+          <div className="w-full md:w-1/2 flex flex-col gap-8">
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg flex flex-col text-white">
+              <h3 className="text-2xl font-bold mb-2">Phone</h3>
+              <a
+                href={`tel:${contact_number}`}
+                className="text-blue-600 dark:text-blue-400 text-lg font-medium hover:underline"
+              >
+                {contact_number}
+              </a>
+            </div>
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg flex flex-col text-white">
+              <h3 className="text-2xl font-bold mb-2">Email</h3>
+              <a
+                href={`mailto:${email_address}`}
+                className="text-blue-600 dark:text-blue-400 text-lg font-medium hover:underline"
+              >
+                {email_address}
+              </a>
+            </div>
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg flex flex-col text-white">
+              <h3 className="text-2xl font-bold mb-2">Address</h3>
+              <p className="text-lg text-gray-600 dark:text-gray-400">
+                {address}
+                <br />
+                India
+              </p>
+            </div>
+            <div>
+              <h3 className="text-2xl font-bold mb-4">Connect on Socials</h3>
+              <div className="flex gap-4">
+                {contactLinks.map((el) => (
+                  <a
+                    key={el.name}
+                    href={el.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-14 h-14 bg-gray-100 dark:bg-gray-700 flex items-center justify-center rounded-full hover:scale-110 transition-transform"
+                  >
+                    <img src={el.url} alt={el.name} className="w-8 h-8" />
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div
-        className={
-          darkMode
-            ? "w-full bg-white text-black text-lg py-3 flex justify-center md:mt-20"
-            : "w-full bg-gray-900 text-white text-lg py-3 flex justify-center md:mt-20"
-        }
+
+      {/* Footer */}
+      <footer
+        className={`py-4 ${
+          darkMode ? "bg-gray-800 text-gray-400" : "bg-gray-100 text-gray-600"
+        }`}
       >
-        Made with
-        <div className="text-red-500 px-2 text-2xl">&#10084;</div>
-        by {full_name}
-      </div>
+        <div className="max-w-7xl mx-auto flex items-center justify-center">
+          Made with <span className="text-red-500 px-2 text-2xl">&#10084;</span>{" "}
+          by {full_name}
+        </div>
+      </footer>
     </div>
   );
 };
