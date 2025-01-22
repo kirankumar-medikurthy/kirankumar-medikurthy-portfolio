@@ -23,7 +23,7 @@ const ExperienceCard = ({
       <div className="absolute top-0 left-0 h-full w-1 bg-gradient-to-b from-blue-500 to-blue-300"></div>
 
       {/* Card Content */}
-      <div className="flex items-center p-8 gap-8">
+      <div className="flex flex-col md:flex-row items-center p-6 md:p-8 gap-6 md:gap-8">
         {/* Company Logo */}
         <a
           href={company_url}
@@ -31,12 +31,12 @@ const ExperienceCard = ({
           rel="noopener noreferrer"
           className="flex-shrink-0"
         >
-          <div className="relative w-28 h-28 rounded-full bg-gradient-to-b from-blue-500 to-blue-300 shadow-lg p-1">
+          <div className="relative w-20 h-20 md:w-28 md:h-28 rounded-full bg-gradient-to-b from-blue-500 to-blue-300 shadow-lg p-1">
             <div className="w-full h-full bg-white rounded-full flex items-center justify-center overflow-hidden border border-gray-200">
               <img
                 src={company_logo}
                 alt={`${company_name} logo`}
-                className="w-24 h-24 object-contain"
+                className="w-16 h-16 md:w-24 md:h-24 object-contain"
               />
             </div>
           </div>
@@ -45,31 +45,31 @@ const ExperienceCard = ({
         {/* Details */}
         <div className="flex-grow">
           {/* Header */}
-          <div className="flex justify-between items-center">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
             <div>
-              <h5 className="text-lg font-bold text-gray-900">
+              <h5 className="text-base md:text-lg font-bold text-gray-900">
                 {designamation}
               </h5>
-              <h6 className="text-sm text-gray-600 font-medium">
+              <h6 className="text-sm md:text-base text-gray-600 font-medium">
                 {company_name}
               </h6>
             </div>
-            <span className="text-xs font-medium text-gray-500">
+            <span className="mt-2 md:mt-0 text-xs md:text-sm font-medium text-gray-500">
               {number_of_years} years
             </span>
           </div>
 
           {/* Description */}
-          <p className="mt-3 text-sm text-gray-700 leading-relaxed">
+          <p className="mt-3 text-sm md:text-base text-gray-700 leading-relaxed">
             {company_description}
           </p>
 
           {/* Achievements */}
           <div className="mt-5">
-            <h6 className="text-sm font-semibold text-gray-800">
+            <h6 className="text-sm md:text-base font-semibold text-gray-800">
               Achievements/Tasks:
             </h6>
-            <ul className="mt-2 list-disc list-inside space-y-2 text-sm text-gray-600">
+            <ul className="mt-2 list-disc list-inside space-y-2 text-sm md:text-base text-gray-600">
               {achievements.slice(0, visibleAchievements).map((item, index) => (
                 <li key={index}>{item}</li>
               ))}

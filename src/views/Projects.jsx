@@ -26,17 +26,19 @@ const Projects = () => {
               project_description,
               project_image_link,
               project_github_link,
+              project_demo_link
             }) => (
               <Card
                 project_name={project_name}
                 project_description={project_description}
                 project_image_link={project_image_link}
                 project_github_link={project_github_link}
+                project_demo_link={project_demo_link}
               />
             )
           )}
         </div>
-        <a
+        {/* <a
           href={"https://github.com/kirankumar-medikurthy"}
           class=" w-32 flex items-center py-4 px-4 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mx-auto mt-4"
         >
@@ -53,7 +55,7 @@ const Projects = () => {
               clip-rule="evenodd"
             ></path>
           </svg>
-        </a>
+        </a> */}
       </div>
     </div>
   );

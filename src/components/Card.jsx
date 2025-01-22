@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-const Card = ({ project_name, project_description, project_image_link, project_github_link }) => {
+const Card = ({ project_name, project_description, project_image_link, project_github_link, project_demo_link }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
@@ -31,7 +31,27 @@ const Card = ({ project_name, project_description, project_image_link, project_g
           rel="noopener noreferrer"
           className="inline-flex items-center py-2 px-4 text-sm font-medium text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-700 transition-all duration-300"
         >
-          Read More
+          GitHubLink
+          <svg
+            className="ml-2 w-4 h-4"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fillRule="evenodd"
+              d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+              clipRule="evenodd"
+            ></path>
+          </svg>
+        </a>
+        <a
+          href={project_demo_link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center py-2 mx-2 px-4 text-sm font-medium text-white bg-violet-500 rounded-lg hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-700 transition-all duration-300"
+        >
+          DemoLink
           <svg
             className="ml-2 w-4 h-4"
             fill="currentColor"
