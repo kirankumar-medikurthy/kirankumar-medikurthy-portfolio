@@ -27,25 +27,20 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    emailjs
-      .send(
-        "contact_service",
-        "template_pxebpwq",
-        formData,
-        "5zS20S7iLzTrbvYtL"
-      )
-      .then(
-        (result) => {
-          console.log("Email sent successfully:", result.text);
-          setStatus("Message sent successfully!");
-          setFormData({ name: "", email: "", message: "" });
-        },
-        (error) => {
-          console.error("Error sending email:", error.text);
-          setStatus("Failed to send message. Please try again later.");
-        }
-      );
+    const serviceId = process.env.REACT_APP_EMAILJS_SERVICE_ID;
+    const templateId = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
+    const userId = process.env.REACT_APP_EMAILJS_USER_ID;
+    emailjs.send(serviceId, templateId, formData, userId).then(
+      (result) => {
+        console.log("Email sent successfully:", result.text);
+        setStatus("Message sent successfully!");
+        setFormData({ name: "", email: "", message: "" });
+      },
+      (error) => {
+        console.error("Error sending email:", error.text);
+        setStatus("Failed to send message. Please try again later.");
+      }
+    );
   };
 
   return (
