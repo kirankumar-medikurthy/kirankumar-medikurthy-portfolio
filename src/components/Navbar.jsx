@@ -11,7 +11,7 @@ const Navbar = () => {
   const links = [
     {
       name: "Home",
-      route: "/",
+      route: "home",
     },
     {
       name: "About",
@@ -54,16 +54,18 @@ const Navbar = () => {
       >
         <div className="flex justify-between items-center py-2 md:py-4 md:px-2 pl-2 mx-auto">
           <div className="flex items-center cursor-pointer">
-            <a
-              href="/"
+            <Link
+              to="home"
+              spy={true}
+              smooth={true}
               className={
                 darkMode
                   ? "text-xl font-medium text-decoration-none whitespace-nowrap text-black"
                   : "text-xl font-medium text-decoration-none whitespace-nowrap text-white"
               }
             >
-              {`<kiran kumar medikurthy/>`}
-            </a>
+              <img src="kirankumar-logo.png" alt="kiran logo" style={{ height: "45px"}}/>
+            </Link>
           </div>
           <div class="hidden justify-between items-center w-full md:flex md:w-auto ">
             <ul
