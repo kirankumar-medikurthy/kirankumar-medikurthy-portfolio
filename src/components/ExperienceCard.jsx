@@ -70,9 +70,20 @@ const ExperienceCard = ({
               Achievements/Tasks:
             </h6>
             <ul className="mt-2 list-disc list-inside space-y-2 text-sm md:text-base text-gray-600">
-              {achievements.slice(0, visibleAchievements).map((item, index) => (
-                <li key={index}>{item}</li>
-              ))}
+              {achievements
+                ?.slice(0, visibleAchievements)
+                .map((item, index) => {
+                  return (
+                    <div>
+                      <h6 className="text-sm md:text-base font-semibold text-gray-800">
+                        {item?.title}
+                      </h6>
+                      {item?.description.map((eachDescription, desIndex) => {
+                        return <li key={desIndex}>{eachDescription}</li>;
+                      })}
+                    </div>
+                  );
+                })}
             </ul>
             {achievements.length > 3 && (
               <button
