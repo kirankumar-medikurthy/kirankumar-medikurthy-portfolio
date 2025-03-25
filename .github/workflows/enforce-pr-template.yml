@@ -1,0 +1,25 @@
+name: Enforce PR Template for Staging & Main
+
+on:
+  pull_request:
+    branches:
+      - staging
+      - main
+
+jobs:
+  apply-template:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Apply PR Template
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TEMPLATE_FILE=".github/PULL_REQUEST_TEMPLATE.md"
+          
+          if [[ -f "$TEMPLATE_FILE" ]]; then
+            TEMPLATE_CONTENT=$(cat "$TEMPLATE_FILE")
+            gh pr edit ${{ github.event.pull_request.number }} --body "$TEMPLATE_CONTENT"
+          fi
