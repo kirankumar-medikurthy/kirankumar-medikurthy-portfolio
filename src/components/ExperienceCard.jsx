@@ -78,7 +78,7 @@ const ExperienceCard = ({
                       <h6 className="text-sm md:text-base font-semibold text-gray-800">
                         {item?.title}
                       </h6>
-                      {item?.description.map((eachDescription, desIndex) => {
+                      {item?.description?.map((eachDescription, desIndex) => {
                         return <li key={desIndex}>{eachDescription}</li>;
                       })}
                     </div>
