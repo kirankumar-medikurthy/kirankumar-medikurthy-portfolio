@@ -4,7 +4,10 @@ import { motion } from "framer-motion";
 
 const Services = () => {
   return (
-    <section className="py-20 bg-gradient-to-br from-blue-50 via-white to-gray-50" id="services">
+    <section
+      className="py-20 bg-gradient-to-br from-blue-50 via-white to-gray-50"
+      id="services"
+    >
       {/* Section Header */}
       <div className="text-center max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-5xl font-extrabold text-gray-800 tracking-tight">
