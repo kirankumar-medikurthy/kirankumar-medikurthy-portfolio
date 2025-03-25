@@ -1,7 +1,13 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-const Card = ({ project_name, project_description, project_image_link, project_github_link, project_demo_link }) => {
+const Card = ({
+  project_name,
+  project_description,
+  project_image_link,
+  project_github_link,
+  project_demo_link,
+}) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
@@ -9,7 +15,12 @@ const Card = ({ project_name, project_description, project_image_link, project_g
       transition={{ duration: 0.5, ease: "easeOut" }}
       className="max-w-xl bg-white rounded-lg border border-gray-200 shadow-md hover:shadow-xl transition-shadow duration-300 dark:bg-gray-800 dark:border-gray-700 my-8 overflow-hidden"
     >
-      <a href={project_github_link} target="_blank" rel="noopener noreferrer" className="block group">
+      <a
+        href={project_github_link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block group"
+      >
         <motion.img
           src={project_image_link}
           alt={project_name}
