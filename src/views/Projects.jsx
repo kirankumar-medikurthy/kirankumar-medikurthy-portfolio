@@ -26,7 +26,7 @@ const Projects = () => {
               project_description,
               project_image_link,
               project_github_link,
-              project_demo_link
+              project_demo_link,
             }) => (
               <Card
                 project_name={project_name}
